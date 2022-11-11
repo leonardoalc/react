@@ -1,10 +1,11 @@
 import './App.css';
 import ManageData from './components/ManageData';
 import ListRender from './components/ListRender';
+import ConditionalRender from './components/ConditionalRender';
+import CarDetails from './components/CarDetails';
 
 // Importando imagens
 import City from "./assets/city.jpg"
-import ConditionalRender from './components/ConditionalRender';
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
       <ManageData/>
       <ListRender/>
       <ConditionalRender/>
+      <CarDetails brand="BMW" km={1000} color="Preto" newCar={false}/>
+      {/* Reutilizando o car details */}
+      <CarDetails brand="Fiat" km={23455} color="Azul" newCar={false}/>
+      <CarDetails brand="Renault" km={0} color="Prata" newCar={true}/>
     </div>
   );
 }

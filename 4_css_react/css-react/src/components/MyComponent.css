@@ -1,0 +1,9 @@
+p {
+    color: green;
+    background-color: black;
+    font-size: 1.1em;
+}
+.p-comp {
+    background-color: gold;
+    color: black;
+}

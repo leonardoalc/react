@@ -1,0 +1,22 @@
+.carros {
+    border: 1px solid black;
+
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+
+    width: 400px;
+
+    text-align: start;
+
+    border-radius: 15px;
+}
+.carros h2 {
+    font-size: 1.67em;
+}
+.carros h3 {
+    text-indent: 15px;
+}
+.car_details {
+    text-transform: capitalize;
+}

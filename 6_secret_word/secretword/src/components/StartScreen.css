@@ -1,0 +1,10 @@
+.h1_start {
+    font-size: 4.5em;
+}
+.p_start {
+    font-size: 1.1em;
+    color: gold;
+
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

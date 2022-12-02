@@ -1,0 +1,20 @@
+.game_main {
+    width: 600px;
+
+    border: 1px solid black;
+
+    margin-top: 10vh;
+}
+.pontuacao {
+    font-weight: bold;
+}
+.title {
+    margin-top: 10px;
+}
+.dica {
+    color: gold;
+    
+    font-weight: bold;
+
+    text-transform: capitalize;
+}

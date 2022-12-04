@@ -19,7 +19,8 @@ const stages = [
 function App() {
   const [gameStage, setgameStage] = useState(stages[0].name)
   const [words, setwords] = useState(wordsList)
-  const [guessedLetter, setguessedLetter] = useState([])
+  const [guessedLetter, setguessedLetter] = useState()
+
 
   // Game Variables
   const [pickedCategory, setpickedCategory] = useState("")
@@ -43,8 +44,17 @@ function App() {
     
     return lettersSplit
   }
-  const verifyLetter = (letter, guessedLetter) => {
-    console.log("testando tudo, porra")
+  const verifyLetter = (letters, guessedLetter) => {
+    let contLetter = 1
+    let igual = false
+    letters.map((e) =>{
+      if (guessedLetter === e) {
+        const elemento = document.getElementById(contLetter)
+        elemento.innerHTML = guessedLetter
+        igual = true
+      }
+      contLetter++
+    })
   }
 
   // Stage functions 
@@ -64,6 +74,9 @@ function App() {
       letters={Letters}
       word={pickedWord}
       category={pickedCategory}
+      guessedLetter={guessedLetter}
+      setGuessedLetter={setguessedLetter}
+      verifyLetter={verifyLetter}
       />}
       {gameStage === "end" && <StartScreen/>}
     </div>

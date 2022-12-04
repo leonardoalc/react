@@ -1,5 +1,5 @@
 .game_main {
-    width: 600px;
+    width: 650px;
 
     border: 1px solid black;
 
@@ -17,4 +17,59 @@
     font-weight: bold;
 
     text-transform: capitalize;
+}
+.palavra-container {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.bloco{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+
+    color: white;
+
+    border: 1px solid black;
+
+    width: 60px;
+    height: 62px;
+
+    font-size: 1.8em;
+
+    text-transform: uppercase;
+}
+.escondido {
+    visibility: hidden;
+}
+.revelado {
+    visibility: visible;
+}
+.letra {
+    width: 60px;
+    height: 62px;
+
+    border: 2px solid goldenrod;
+
+    font-size: 1.8em;
+
+    text-align: center;
+    text-transform: uppercase;
+}
+.form-game {
+    display: flex;
+    
+    gap: 20px;
+
+    justify-content: center;
+
+    margin-top: 15px;
 }

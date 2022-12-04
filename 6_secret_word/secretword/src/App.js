@@ -19,6 +19,7 @@ const stages = [
 function App() {
   const [gameStage, setgameStage] = useState(stages[0].name)
   const [words, setwords] = useState(wordsList)
+  const [guessedLetter, setguessedLetter] = useState([])
 
   // Game Variables
   const [pickedCategory, setpickedCategory] = useState("")

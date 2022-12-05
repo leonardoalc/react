@@ -4,12 +4,19 @@ import "./Game.css"
 // hooks
 import { useState } from "react"
 
-const Game = ({ letters, word, category, guessedLetter, setGuessedLetter, verifyLetter }) => {
+const Game = ({ letters,  
+  category, 
+  guessedLetter, 
+  setGuessedLetter, 
+  verifyLetter,
+  wrongLetters,
+  rightLetters
+}) => {
   const [pts, setpts] = useState(0)
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    verifyLetter(letters, guessedLetter)
+    verifyLetter(letters, guessedLetter, rightLetters, wrongLetters)
   }
   const handleCont = () => {
     cont += 1
@@ -24,7 +31,7 @@ const Game = ({ letters, word, category, guessedLetter, setGuessedLetter, verify
         <p>Dica: <span className="dica">{category}</span></p>
         <div className="palavra-container">
           {letters.map((l) =>(
-            <span className="bloco" id={handleCont()} key={cont}></span>
+            <span className="bloco" key={cont} id={handleCont()}></span>
           ))}
         </div>
         <p>Tente advinhar uma letra da palavra:</p>
@@ -34,6 +41,10 @@ const Game = ({ letters, word, category, guessedLetter, setGuessedLetter, verify
           </label>
           <button type="submit">Jogar</button>
         </form>
+        <div className="letras-erradas">
+          <p>Letras já utilizadas:</p>
+          
+        </div>
       </main>
     </div>
   )

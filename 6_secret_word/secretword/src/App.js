@@ -6,7 +6,7 @@ import StartScreen from './components/StartScreen';
 import Game from './components/Game';
 
 // react
-import {useCallback, useState, useEffect} from "react"
+import {useCallback, useState, useEffect } from "react"
 
 // data
 import {wordsList} from "./data/words"
@@ -26,9 +26,12 @@ function App() {
   const [pickedCategory, setpickedCategory] = useState("")
   const [pickedWord, setpickedWord] = useState("")
   const [Letters, setLetters] = useState([])
-  let rightLetters = []
-  let wrongLetters = []
 
+  const [rightLetters, setrightLetters] = useState([])
+  const [wrongLetters, setwrongLetters] = useState([])
+  const [chances, setchances] = useState(5)
+  const [score, setscore] = useState(0)
+  
 
   // Game functions
   const pickWordAndCategory = () => {
@@ -50,31 +53,33 @@ function App() {
   const verifyLetter = (letters, guessedLetter, rightLetters, wrongLetters) => {
     let contLetter = 1
     let igual = false
+
+    const normalizedLetter = guessedLetter.toLowerCase()
     // checanndo se a letra já foi utilizada
-    if (wrongLetters.includes(guessedLetter)) {
-      console.log("errada")
-    }
-    if (rightLetters.includes(guessedLetter))  {
-      console.log("certa")
+    if (wrongLetters.includes(normalizedLetter) || rightLetters.includes(normalizedLetter)) {
+      return;
     }
 
     letters.map((e) =>{
-      if (guessedLetter === e) {
+      if (normalizedLetter === e) {
         const elemento = document.getElementById(contLetter)
-        elemento.innerHTML = guessedLetter
+        elemento.innerHTML = normalizedLetter
         igual = true
       }
     contLetter++
     })
     // adicionando em wrongLetters ou rightLetters
-    if (igual) {
-      rightLetters.push(guessedLetter)
+    if(letters.includes(normalizedLetter)) {
+      setrightLetters((actualGuessedLetters) => [
+        ...actualGuessedLetters,
+        normalizedLetter
+      ])
     } else {
-      wrongLetters.push(guessedLetter)
+      setwrongLetters((actualWrongLetters) => [
+        ...actualWrongLetters,
+        normalizedLetter
+      ])
     }
-    console.log(rightLetters)
-    console.log(wrongLetters)
-    console.log("===========")
   }
 
   // Stage functions 
@@ -93,13 +98,14 @@ function App() {
       {gameStage === "start" && <StartScreen startGame={startGame}/>}
       {gameStage === "game" && <Game 
       letters={Letters}
-      word={pickedWord}
       category={pickedCategory}
       guessedLetter={guessedLetter}
       setGuessedLetter={setguessedLetter}
       verifyLetter={verifyLetter}
       wrongLetters={wrongLetters}
       rightLetters={rightLetters}
+      chances={chances}
+      score={score}
       />}
       {gameStage === "end" && <StartScreen/>}
     </div>

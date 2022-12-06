@@ -2,7 +2,7 @@
 import "./Game.css"
 
 // hooks
-import { useState } from "react"
+import { useRef } from "react"
 
 const Game = ({ letters,  
   category, 
@@ -10,39 +10,46 @@ const Game = ({ letters,
   setGuessedLetter, 
   verifyLetter,
   wrongLetters,
-  rightLetters
+  rightLetters,
+  chances,
+  score
 }) => {
-  const [pts, setpts] = useState(0)
+  const letterInputRef = useRef(null)
 
   const handleSubmit = (event) => {
     event.preventDefault()
+
     verifyLetter(letters, guessedLetter, rightLetters, wrongLetters)
+
+    setGuessedLetter("")
+    letterInputRef.current.focus()
   }
-  const handleCont = () => {
-    cont += 1
-    return cont
+  const handleId = () => {
+    id += 1
+    return id
   }
-  let cont = 0
+  let id = 0
   return (
     <div>
       <main className="game_main">
-        <p className="pontuacao">Pontuação: {pts}</p>
+        <p className="pontuacao">Pontuação: {score}</p>
         <h1 className="title">Advinhe a palavra: </h1>
         <p>Dica: <span className="dica">{category}</span></p>
+        <p>Você ainda tem <span className="span-tentativas">{chances}</span> tentativas</p>
         <div className="palavra-container">
-          {letters.map((l) =>(
-            <span className="bloco" key={cont} id={handleCont()}></span>
+          {letters.map((l, i) =>(
+            <span className="bloco" key={i} id={handleId()}></span>
           ))}
         </div>
         <p>Tente advinhar uma letra da palavra:</p>
         <form className="form-game" onSubmit={handleSubmit}>
           <label>
-            <input type="" maxLength="1" minLength="1" className="letra" onChange={(e) => setGuessedLetter(e.target.value)} required/>
+            <input type="" maxLength="1" minLength="1" className="letra" onChange={(e) => setGuessedLetter(e.target.value)}  ref={letterInputRef} required/>
           </label>
           <button type="submit">Jogar</button>
         </form>
         <div className="letras-erradas">
-          <p>Letras já utilizadas:</p>
+          <p>Letras já utilizadas: {wrongLetters.map((l, i) => <span key={i}>{l}, </span>)}</p>
           
         </div>
       </main>

@@ -4,6 +4,7 @@ import './App.css';
 // Components
 import StartScreen from './components/StartScreen';
 import Game from './components/Game';
+import End from './components/End';
 
 // react
 import {useCallback, useState, useEffect } from "react"
@@ -18,23 +19,21 @@ const stages = [
 ]
 function App() {
   const [gameStage, setgameStage] = useState(stages[0].name)
-  const [words, setwords] = useState(wordsList)
   const [guessedLetter, setguessedLetter] = useState()
 
+    const words = wordsList
 
   // Game Variables
   const [pickedCategory, setpickedCategory] = useState("")
-  const [pickedWord, setpickedWord] = useState("")
   const [Letters, setLetters] = useState([])
 
   const [rightLetters, setrightLetters] = useState([])
   const [wrongLetters, setwrongLetters] = useState([])
   const [chances, setchances] = useState(5)
   const [score, setscore] = useState(0)
-  
 
   // Game functions
-  const pickWordAndCategory = () => {
+  const pickWordAndCategory = useCallback(() => {
     // picking a category
     const categories = Object.keys(words)
     const category = categories[Math.floor(Math.random() * categories.length)]
@@ -43,31 +42,32 @@ function App() {
     const word = words[category][Math.floor(Math.random() * words[category].length)]
     
     return {word, category}
-  }
+  }, [words])
+
   const transformWordtoLetter = (word) => {
     const wordlower = word.toLowerCase()
     const lettersSplit = wordlower.split("")
     
     return lettersSplit
   }
+
   const verifyLetter = (letters, guessedLetter, rightLetters, wrongLetters) => {
     let contLetter = 1
-    let igual = false
 
     const normalizedLetter = guessedLetter.toLowerCase()
     // checanndo se a letra já foi utilizada
-    if (wrongLetters.includes(normalizedLetter) || rightLetters.includes(normalizedLetter)) {
+    if (wrongLetters.includes(normalizedLetter) || rightLetters.includes(normalizedLetter) || isNaN(normalizedLetter) === false) {
       return;
     }
 
-    letters.map((e) =>{
+    letters.forEach((e) => {
       if (normalizedLetter === e) {
         const elemento = document.getElementById(contLetter)
         elemento.innerHTML = normalizedLetter
-        igual = true
       }
     contLetter++
-    })
+    }
+    )
     // adicionando em wrongLetters ou rightLetters
     if(letters.includes(normalizedLetter)) {
       setrightLetters((actualGuessedLetters) => [
@@ -79,20 +79,63 @@ function App() {
         ...actualWrongLetters,
         normalizedLetter
       ])
+
+      setchances((actualChances) => actualChances - 1)
     }
   }
 
   // Stage functions 
-  const startGame = () => {
+  const startGame = useCallback(() => {
     const {word, category} = pickWordAndCategory()
     const letters = transformWordtoLetter(word)
 
+
+    clearLetterStates()
     setpickedCategory(category)
     setLetters(letters)
-    setpickedWord(word)
-    
+    setchances(5)
     setgameStage(stages[1].name)
+  }, [pickWordAndCategory])
+
+  // reset game
+  const clearLetterStates = () => {
+    setrightLetters([])
+    setwrongLetters([])
   }
+
+  useEffect(() => {
+    if (chances <= 0) {
+      // reset all states
+      clearLetterStates()
+
+      setgameStage(stages[2].name)
+    }
+  }, [chances])
+
+  const retry = () => {
+    setscore(0)
+    setchances(5)
+    setgameStage(stages[0].name)
+  }
+
+  // win condition
+  useEffect(() => {
+
+  const uniqueLetters = [...new Set(Letters)]
+    if (rightLetters.length !== 0) {
+      if (rightLetters.length === uniqueLetters.length) {
+        setscore((actualScore) => actualScore + 100)
+        // removing letters from white space
+        for (let id = 1; id <= Letters.length; id++) {
+          const elemento = document.getElementById(id)
+          elemento.innerHTML = ""
+        }
+
+        startGame()
+      }
+    }
+  }, [rightLetters, Letters, startGame])
+
   return (
     <div className="App">
       {gameStage === "start" && <StartScreen startGame={startGame}/>}
@@ -107,7 +150,10 @@ function App() {
       chances={chances}
       score={score}
       />}
-      {gameStage === "end" && <StartScreen/>}
+      {gameStage === "end" && <End
+      retry={retry}
+      score={score}
+      />}
     </div>
   );
 }

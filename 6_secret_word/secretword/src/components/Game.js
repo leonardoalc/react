@@ -21,8 +21,8 @@ const Game = ({ letters,
 
     verifyLetter(letters, guessedLetter, rightLetters, wrongLetters)
 
-    setGuessedLetter("")
     letterInputRef.current.focus()
+    setGuessedLetter("")
   }
   const handleId = () => {
     id += 1
@@ -44,7 +44,7 @@ const Game = ({ letters,
         <p>Tente advinhar uma letra da palavra:</p>
         <form className="form-game" onSubmit={handleSubmit}>
           <label>
-            <input type="" maxLength="1" minLength="1" className="letra" onChange={(e) => setGuessedLetter(e.target.value)}  ref={letterInputRef} required/>
+            <input type="text" name="letter" maxLength="1" minLength="1" className="letra" onChange={(e) => setGuessedLetter(e.target.value)} value={guessedLetter || ""} ref={letterInputRef} required/>
           </label>
           <button type="submit">Jogar</button>
         </form>

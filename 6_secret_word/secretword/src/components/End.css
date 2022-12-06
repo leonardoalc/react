@@ -1,0 +1,12 @@
+.end-h1 {
+    font-size: 4.5em;
+}
+.score-span {
+    color: gold;
+}
+.reset-p {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-size: 1.2em;
+    color: gold;
+}

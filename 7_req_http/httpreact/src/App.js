@@ -51,7 +51,9 @@ function App() {
 
     //3 carregamento dinâmico
     setproducts((prevProducts) => [...prevProducts, addedProduct])
-     */
+
+    
+    */
     //5 refatorando post
     httpsConfig(product, "POST")
     cleanForm()

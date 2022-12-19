@@ -1,24 +1,29 @@
 {
-    "products": [
-        {
-            "id": 1,
-            "name": "camisa",
-            "price": 59.9
-        },
-        {
-            "id": 2,
-            "name": "calça",
-            "price": 70
-        },
-        {
-            "id": 3,
-            "name": "tênis",
-            "price": 149
-        },
-        {
-            "id": 4,
-            "name": "regate",
-            "price": 40
-        }
-    ]
+  "products": [
+    {
+      "id": 1,
+      "name": "camisa",
+      "price": 59.9
+    },
+    {
+      "id": 2,
+      "name": "calça",
+      "price": 70
+    },
+    {
+      "id": 3,
+      "name": "tênis",
+      "price": 149
+    },
+    {
+      "id": 4,
+      "name": "regata",
+      "price": 40
+    },
+    {
+      "id": 5,
+      "name": "chinelo",
+      "price": 20
+    }
+  ]
 }

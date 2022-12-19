@@ -1,29 +1,24 @@
 {
   "products": [
     {
-      "id": 1,
       "name": "camisa",
-      "price": 59.9
+      "price": "66",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "calça",
-      "price": 70
+      "name": "moletom",
+      "price": "120",
+      "id": 2
     },
     {
-      "id": 3,
-      "name": "tênis",
-      "price": 149
-    },
-    {
-      "id": 4,
-      "name": "regata",
-      "price": 40
-    },
-    {
-      "id": 5,
       "name": "chinelo",
-      "price": 20
+      "price": "20",
+      "id": 3
+    },
+    {
+      "name": "action figure",
+      "price": "349",
+      "id": 4
     }
   ]
 }

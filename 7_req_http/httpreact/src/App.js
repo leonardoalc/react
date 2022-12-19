@@ -57,6 +57,9 @@ function App() {
     cleanForm()
   }
 
+  const handleRemove = id => {
+    httpsConfig(id, "DELETE")
+  }
   return (
     <div className="App">
       <h1>Lista de produtos</h1>
@@ -65,7 +68,7 @@ function App() {
       {error && <p>{error}</p>}
       {!error && <ul>
         {items && items.map((p) => (
-          <li key={p.id}>{p.name} - R${p.price}</li>
+          <li key={p.id}>{p.name} - R${p.price} <button onClick={() => handleRemove(p.id)}>Excluir</button></li>
         ))}
       </ul>}
       <div className="add-product">

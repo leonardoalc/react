@@ -1,0 +1,24 @@
+{
+    "products": [
+      {
+        "name": "camisa",
+        "price": "66",
+        "id": 1
+      },
+      {
+        "name": "moletom",
+        "price": "120",
+        "id": 2
+      },
+      {
+        "name": "chinelo",
+        "price": "20",
+        "id": 3
+      },
+      {
+        "name": "action figure",
+        "price": "349",
+        "id": 4
+      }
+    ]
+  }

@@ -1,0 +1,17 @@
+.product-div {
+    width: 200px;
+    
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.253);
+
+    border-radius: 5px;
+
+    padding: 20px;
+
+    margin: auto;
+}
+.product-div h1 {
+    text-transform: capitalize;
+}
+.product:hover {
+    background-color: #fff;
+}

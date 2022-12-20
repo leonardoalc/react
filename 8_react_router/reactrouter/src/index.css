@@ -1,0 +1,11 @@
+* {
+  padding: 0px;
+  margin: 0px
+}
+body {
+  font-family: -apple-system, sans-serif;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

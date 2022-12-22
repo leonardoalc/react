@@ -9,6 +9,14 @@
 
     margin: auto;
 }
+.product-div a {
+    color: rgb(0, 175, 175);
+
+    text-decoration: none;
+}
+.product-div a:hover {
+    text-decoration: underline;
+}
 .product-div h1 {
     text-transform: capitalize;
 }

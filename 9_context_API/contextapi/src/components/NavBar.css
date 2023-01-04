@@ -1,0 +1,13 @@
+.ativo {
+    background-color: #808080;
+    color: aliceblue;
+    padding: 5px;
+}
+.nao-ativo {
+    background-color: #a5a5a5;
+    color: aliceblue;
+    padding: 5px;
+}
+.nao-ativo:hover {
+    background-color: #76a1a1;
+}

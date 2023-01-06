@@ -1,0 +1,51 @@
+.navbar_nav {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    height: 70px;
+
+    background-color: #e8f4fd;
+
+    box-shadow: 0px 0px 8px #0000002a;
+}
+.nav_box1 {
+    margin-left: 20px;
+}
+.miniblog_link {
+    color: #000000;
+
+    text-decoration: none;
+
+    font-size: 1.3em;
+}
+.blog_span {
+    font-weight: bold;
+}
+.nav_box2 {
+    display: flex;
+
+    gap: 15px;
+
+    margin-right: 20px;
+}
+.ativo {
+    text-decoration: none;
+
+    background-color: #808080;
+
+    padding: 5px;
+
+    color: #ffffff;
+}
+.nao_ativo {
+    color: #000000;
+
+    text-decoration: none;
+
+    padding: 5px;
+}
+.nao_ativo:hover {
+    color: #387b96;
+}

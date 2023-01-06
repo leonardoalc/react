@@ -33,11 +33,13 @@
 .ativo {
     text-decoration: none;
 
-    background-color: #808080;
+    background-color: #c9995a;
 
     padding: 5px;
 
     color: #ffffff;
+
+    border-radius: 5px;
 }
 .nao_ativo {
     color: #000000;

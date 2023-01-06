@@ -6,17 +6,15 @@ import { useAuthValue } from "../../context/AuthContext"
 
 const About = () => {
 
-  const user = useAuthValue()
+  const { user } = useAuthValue()
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Sobre o mini<span>BLOG</span></h2>
       <p>Este projeto consiste em um blog feito com react no front-end e firebase no backend</p>
 
-      <Link to="/login" className={styles.l_ink}>Começar a postar</Link>
-
       {!user && <Link to="/login">Entre para postar</Link>}
-      {user && <Link to="/login">Começar a postar</Link>}
+      {user && <Link to="/posts/newpost" className={styles.link}>Começar a postar</Link>}
     </div>
   )
 }

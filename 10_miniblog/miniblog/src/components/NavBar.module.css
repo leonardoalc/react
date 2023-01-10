@@ -41,13 +41,22 @@
 
     border-radius: 5px;
 }
-.nao_ativo {
+.btn_logout, .nao_ativo {
     color: #000000;
 
     text-decoration: none;
 
     padding: 5px;
 }
-.nao_ativo:hover {
+.btn_logout:hover, .nao_ativo:hover {
     color: #387b96;
+}
+.btn_logout {
+    border: none;
+    
+    background-color: transparent;
+
+    font-size: 1em;
+
+    cursor: pointer;
 }

@@ -34,8 +34,7 @@ input {
 
     border: 1px solid rgba(0, 0, 0, 0.164);
 }
-
-button {
+.btn_register {
     width: 250px;
     height: 45px;
 
@@ -54,9 +53,9 @@ button {
 
     cursor: pointer;
 }
-button:hover {
+.btn_register:hover {
     background-color: #27c421;
 }
-button:disabled {
+.btn_register:disabled {
     background-color: gray;
 }

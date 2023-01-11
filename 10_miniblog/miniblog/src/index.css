@@ -15,7 +15,44 @@ body {
   min-height: 45px;
 
   background-color: rgba(247, 76, 76, 0.479);
-  color: red;
+  color: rgb(155, 0, 0);
 
   border-radius: 5px;
+}
+input {
+  width: 240px;
+  height: 35px;
+
+  margin-bottom: 10px;
+
+  padding: 5px;
+
+  border-radius: 5px;
+
+  border: 1px solid rgba(0, 0, 0, 0.164);
+}
+.btn {
+  width: 250px;
+  height: 45px;
+
+  border-radius: 5px;
+  border: none;
+
+  background-color: #36ff2f;
+
+  color: white;
+
+  font-weight: bold;
+
+  font-size: 1em;
+
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.233);
+
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #27c421;
+}
+.btn:disabled {
+  background-color: gray;
 }

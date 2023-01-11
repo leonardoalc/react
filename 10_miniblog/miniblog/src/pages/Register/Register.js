@@ -57,8 +57,8 @@ const Register = () => {
             <label>
                 <input type="password" name="confirmPassword" required minLength="3" autoComplete="new-password" placeholder="Confirme a sua senha" value={confirmPassword} onChange={(e) => setconfirmPassword(e.target.value)}/>
             </label>
-            {!loading && <button type="submit" className={styles.btn_register}>Cadastrar </button>}
-            {loading && <button disabled className={styles.btn_register}>Aguarde</button>}
+            {!loading && <button type="submit" className="btn">Cadastrar </button>}
+            {loading && <button disabled className="btn">Aguarde</button>}
             {error && <p className="error">{error}</p>}
         </form>
     </div>

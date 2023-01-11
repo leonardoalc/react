@@ -31,6 +31,11 @@ input {
 
   border: 1px solid rgba(0, 0, 0, 0.164);
 }
+label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
 .btn {
   width: 250px;
   height: 45px;
@@ -38,7 +43,7 @@ input {
   border-radius: 5px;
   border: none;
 
-  background-color: #36ff2f;
+  background-color: #2fd5ff;
 
   color: white;
 
@@ -51,8 +56,13 @@ input {
   cursor: pointer;
 }
 .btn:hover {
-  background-color: #27c421;
+  background-color: #21b9c4;
 }
 .btn:disabled {
   background-color: gray;
+}
+.sp-input {
+  font-size: 1.1em;
+  font-weight: bold;
+
 }

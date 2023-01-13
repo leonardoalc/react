@@ -4,6 +4,7 @@ import { useState } from "react"
 
 import { useNavigate } from "react-router-dom"
 import { useAuthValue } from "../../context/AuthContext"
+import { useInsertDocument } from "../../hooks/useInsertDocument"
 
 const NewPost = () => {
 
@@ -11,17 +12,32 @@ const NewPost = () => {
   const [image, setimage] = useState("")
   const [body, setbody] = useState("")
   const [tags, settags] = useState([])
-  const [error, seterror] = useState("")
+  const [formError, setformError] = useState("")
+
+  const {insertDocument, response} = useInsertDocument("posts")
+  const {user} = useAuthValue()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setformError("")
 
-    console.log(
+    // validar url da imagem
+    
+    // criar array de tags
+
+    // checar todos os valores
+
+    insertDocument({
       title,
       image,
       body,
-      tags
-    )
+      tags,
+      uid: user.uid,
+      createdBy: user.displayName
+    })
+
+    // redirect to homepage
+
   }
 
   return (
@@ -76,10 +92,9 @@ const NewPost = () => {
             onChange={(e) => settags(e.target.value)}
           />
         </label>
-        <button type="submit" className="btn">Criar post</button>
-        {/*{!loading && <button type="submit" className="btn">Cadastrar </button>}
-        {loading && <button disabled className="btn">Aguarde</button>}
-        {error && <p className="error">{error}</p>}*/}
+        {!response.loading && <button type="submit" className="btn">Postar</button>}
+        {response.loading && <button disabled className="btn">Aguarde</button>}
+        {response.error && <p className="error">{response.error}</p>}
       </form>
     </div>
   )

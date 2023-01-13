@@ -18,6 +18,7 @@ const NewPost = () => {
   const {user} = useAuthValue()
 
   const handleSubmit = (e) => {
+    {console.log(response)}
     e.preventDefault()
     setformError("")
 
@@ -26,6 +27,11 @@ const NewPost = () => {
     // criar array de tags
 
     // checar todos os valores
+    if (!title || !image || !tags || !body) {
+      setformError("Por favor, preencha todos os campos!");
+    }
+
+    if(formError) return
 
     insertDocument({
       title,
@@ -37,7 +43,7 @@ const NewPost = () => {
     })
 
     // redirect to homepage
-
+    {console.log(response)}
   }
 
   return (
@@ -94,7 +100,7 @@ const NewPost = () => {
         </label>
         {!response.loading && <button type="submit" className="btn">Postar</button>}
         {response.loading && <button disabled className="btn">Aguarde</button>}
-        {response.error && <p className="error">{response.error}</p>}
+        {(response.error || formError) && <p className="error">{response.error}</p>}
       </form>
     </div>
   )

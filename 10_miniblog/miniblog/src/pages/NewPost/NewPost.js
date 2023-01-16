@@ -16,19 +16,33 @@ const NewPost = () => {
 
   const {insertDocument, response} = useInsertDocument("posts")
   const {user} = useAuthValue()
+  const navigate = useNavigate()
+
+  const cleanData = () => {
+    settitle("")
+    setimage("")
+    setbody("")
+    settags("")
+  }
 
   const handleSubmit = (e) => {
-    {console.log(response)}
     e.preventDefault()
     setformError("")
 
     // validar url da imagem
-    
+    try{
+      new URL(image)
+    } catch (err)  {
+      return setformError("A imagem precisa ser uma URL.")
+    }
     // criar array de tags
+    const tagsArray = tags.split(",").map(tag => tag.trim().toLowerCase())
 
+    console.log(tagsArray)
     // checar todos os valores
+
     if (!title || !image || !tags || !body) {
-      setformError("Por favor, preencha todos os campos!");
+        return setformError("Por favor, preencha todos os campos!");
     }
 
     if(formError) return
@@ -37,13 +51,14 @@ const NewPost = () => {
       title,
       image,
       body,
-      tags,
+      tagsArray,
       uid: user.uid,
       createdBy: user.displayName
     })
 
     // redirect to homepage
-    {console.log(response)}
+    
+    navigate("/")
   }
 
   return (
@@ -100,7 +115,7 @@ const NewPost = () => {
         </label>
         {!response.loading && <button type="submit" className="btn">Postar</button>}
         {response.loading && <button disabled className="btn">Aguarde</button>}
-        {(response.error || formError) && <p className="error">{response.error}</p>}
+        {(response.error || formError) && <p className="error">{response.error || formError}</p>}
       </form>
     </div>
   )

@@ -14,8 +14,8 @@ body {
   width: 250px;
   min-height: 45px;
 
-  background-color: rgba(247, 76, 76, 0.479);
-  color: rgb(155, 0, 0);
+  background-color: #f74c4c7a;
+  color: #9b0000;
 
   border-radius: 5px;
 }
@@ -29,12 +29,15 @@ input {
 
   border-radius: 5px;
 
-  border: 1px solid rgba(0, 0, 0, 0.164);
+  border: 1px solid #0000002a;
 }
 label {
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
+}
+textarea {
+  font-family: "Nunito Sans", sans-serif;
 }
 .btn {
   width: 250px;
@@ -54,6 +57,8 @@ label {
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.233);
 
   cursor: pointer;
+
+  text-decoration: none;
 }
 .btn:hover {
   background-color: #21b9c4;

@@ -11,6 +11,8 @@
     border-bottom-right-radius: 0px;
 
     border-right: none;
+
+    width: 300px;
 }
 .search_button {
     height: 47px;
@@ -24,4 +26,7 @@
 
     cursor: pointer;
 
+}
+.posts_h1 {
+    text-align: center;
 }

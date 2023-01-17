@@ -5,12 +5,16 @@ import { useState } from "react"
 
 import { FaSearch } from "react-icons/fa"
 
+import { useFetchDocuments } from "../../hooks/useFetchDocuments"
+
+import PostDetail from "../../components/PostDetail"
+
 
 
 const Home = () => {
   const [query, setquery] = useState("")
-  const [posts, setposts] = useState([])
-
+  const { documents: posts, loading} = useFetchDocuments("posts")
+  console.log(posts)
   const handleSubmit = (e) =>  {
     e.preventDefault()
 
@@ -25,7 +29,10 @@ const Home = () => {
         <button className={styles.search_button}><FaSearch/></button>
       </form>
       <div>
-        <h1>Posts</h1>
+        <h1 className={styles.posts_h1}>Posts</h1>
+        {posts && posts.map((post) => (
+          <PostDetail key={post.id} post={post}/>
+        ))}
         {posts && posts.length === 0 && (
           <div>
             <p>Não foram encontrados posts...</p>

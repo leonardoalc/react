@@ -18,6 +18,7 @@ const Home = () => {
       <SearchForm/>
       <div>
         <h1 className={styles.posts_h1}>Posts</h1>
+        {loading && <p>Carregando...</p>}
         {posts && posts.map((post) => (
           <PostDetail key={post.id} post={post}/>
         ))}

@@ -1,10 +1,12 @@
 import './App.css';
+
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { onAuthStateChanged } from 'firebase/auth';
 
 
 // hooks
 import { useState, useEffect } from 'react';
+import { useAthentication } from './hooks/useAuthentication';
 
 // components
 import NavBar from './components/NavBar';
@@ -21,7 +23,9 @@ import Footer from './components/Footer';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Search from './pages/Search/Search';
-import { useAthentication } from './hooks/useAuthentication';
+import Post from './pages/Post/Post';
+
+
 
 function App() {
 
@@ -40,6 +44,7 @@ function App() {
     return <p>Carregando...</p>
   }
 
+  console.log(user)
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
@@ -52,6 +57,7 @@ function App() {
               <Route path='/register' element={!user ? <Register/> : <Navigate to="/"/>}/>
               <Route path='/dashboard' element={user ? <Dashboard/> : <Navigate to="/login"/>}/>
               <Route path='/search' element={<Search/>}/>
+              <Route path='/posts/:id' element={<Post/>}/>
               <Route path='/posts/newpost' element={user ? <NewPost/> : <Navigate to="/login"/>}/>
               <Route path='/about' element={<About/>}/>
             </Routes>

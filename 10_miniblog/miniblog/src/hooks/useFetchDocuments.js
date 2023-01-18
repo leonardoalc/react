@@ -30,10 +30,11 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
                 let q 
 
                 // busca
-                
-                // dashboard
-
-                q = await query(collectionRef, orderBy("createdAt", "desc")) // ordenando pelo createdAt do mais novo para o mais antigo
+                if (search) {
+                    q = await query(collectionRef, where("tagsArray", "array-contains", search), orderBy("createdAt", "desc"))
+                } else {
+                    q = await query(collectionRef, orderBy("createdAt", "desc")) // ordenando pelo createdAt do mais novo para o mais antigo
+                }
 
                 await onSnapshot(q, (querySnapshot) => {
                     setdocuments(

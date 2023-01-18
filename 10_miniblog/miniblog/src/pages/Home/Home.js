@@ -1,33 +1,21 @@
 import styles from "./Home.module.css"
 
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, Link, Navigate } from "react-router-dom"
 import { useState } from "react"
-
-import { FaSearch } from "react-icons/fa"
 
 import { useFetchDocuments } from "../../hooks/useFetchDocuments"
 
 import PostDetail from "../../components/PostDetail"
-
+import SearchForm from "../../components/SearchForm"
 
 
 const Home = () => {
-  const [query, setquery] = useState("")
   const { documents: posts, loading} = useFetchDocuments("posts")
-  console.log(posts)
-  const handleSubmit = (e) =>  {
-    e.preventDefault()
-
-
-  }
 
   return (
     <div className={styles.home}>
       <h1>Veja nossos posts mais recentes</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Ou busque por tags..." className={styles.search_input} onChange={e => setquery(e.target.value)} value={query}/>
-        <button className={styles.search_button}><FaSearch/></button>
-      </form>
+      <SearchForm/>
       <div>
         <h1 className={styles.posts_h1}>Posts</h1>
         {posts && posts.map((post) => (

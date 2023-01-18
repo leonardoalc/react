@@ -4,29 +4,6 @@
     align-items: center;
     justify-content: center;   
 }
-
-
-.search_input {
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-
-    border-right: none;
-
-    width: 300px;
-}
-.search_button {
-    height: 47px;
-    width: 40px;
-
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-
-    border: 1px solid #0000002a;
-    border-left: none;
-
-    cursor: pointer;
-
-}
 .posts_h1 {
     text-align: center;
 }

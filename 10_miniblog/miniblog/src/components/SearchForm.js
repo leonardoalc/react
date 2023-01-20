@@ -10,8 +10,9 @@ const SearchForm = () => {
     const navigate = useNavigate()
     const handleSubmit = (e) =>  {
         e.preventDefault()
-
+        console.log(query)
         if(query) {
+          console.log("aaa")
             return navigate(`/search?q=${query}`)
         }
     }

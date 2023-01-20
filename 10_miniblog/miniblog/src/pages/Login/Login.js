@@ -17,9 +17,6 @@ const Login = () => {
     e.preventDefault()
     seterror("")
 
-    console.log(email)
-    console.log(password)
-
     const user = {
       email,
       password

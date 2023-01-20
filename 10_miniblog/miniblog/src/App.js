@@ -24,6 +24,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Search from './pages/Search/Search';
 import Post from './pages/Post/Post';
+import EditPost from './pages/EditPost/EditPost';                     
 
 
 
@@ -44,7 +45,6 @@ function App() {
     return <p>Carregando...</p>
   }
 
-  console.log(user)
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
@@ -59,6 +59,7 @@ function App() {
               <Route path='/search' element={<Search/>}/>
               <Route path='/posts/:id' element={<Post/>}/>
               <Route path='/posts/newpost' element={user ? <NewPost/> : <Navigate to="/login"/>}/>
+              <Route path='/posts/edit/:id' element={user ? <EditPost/> : <Navigate to="/login"/>}/>
               <Route path='/about' element={<About/>}/>
             </Routes>
           </div>

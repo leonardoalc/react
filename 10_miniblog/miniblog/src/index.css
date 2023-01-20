@@ -40,6 +40,9 @@ label {
 textarea {
   font-family: "Nunito Sans", sans-serif;
 }
+button {
+  font-family: "Nunito Sans", sans-serif;
+}
 .btn {
   width: 250px;
   height: 45px;

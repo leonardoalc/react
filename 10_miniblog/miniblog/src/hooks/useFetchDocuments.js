@@ -32,6 +32,8 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
                 // busca
                 if (search) {
                     q = await query(collectionRef, where("tagsArray", "array-contains", search), orderBy("createdAt", "desc"))
+                } else if (uid) {
+                    q = await query(collectionRef, where("uid", "==", uid), orderBy("createdAt", "desc"))
                 } else {
                     q = await query(collectionRef, orderBy("createdAt", "desc")) // ordenando pelo createdAt do mais novo para o mais antigo
                 }
@@ -55,7 +57,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         }
 
         loadData()
-    }, [docCollection, search, uid, cancelled, documents])
+    }, [docCollection, search, uid, cancelled])
 
     useEffect(() => {
       return () => setcancelled(true)

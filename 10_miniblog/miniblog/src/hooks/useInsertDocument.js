@@ -56,6 +56,7 @@ export const useInsertDocument  = (docCollection) => {
         return () => setcancelled(true)
     }, [])
 
+    console.log(response)
     return {
         insertDocument,
         response

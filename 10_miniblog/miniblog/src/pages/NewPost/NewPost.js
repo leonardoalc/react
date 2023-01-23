@@ -17,14 +17,7 @@ const NewPost = () => {
   const {insertDocument, response} = useInsertDocument("posts")
   const {user} = useAuthValue()
   const navigate = useNavigate()
-
-  const cleanData = () => {
-    settitle("")
-    setimage("")
-    setbody("")
-    settags("")
-  }
-
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     setformError("")

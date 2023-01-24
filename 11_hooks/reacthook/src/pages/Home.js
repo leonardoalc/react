@@ -1,6 +1,7 @@
 // componentes
 import HookUseState from '../components/HookUseState';
 import HookeUseReducer from '../components/HookeUseReducer';
+import HookUseEffect from '../components/HookUseEffect';
 
 const Home = () => {
 
@@ -10,6 +11,7 @@ const Home = () => {
       <hr />
       <HookeUseReducer/>
       <hr />  
+      <HookUseEffect/>
     </div>
   )
 }

@@ -1,9 +1,11 @@
 // componentes
 import HookUseState from '../components/HookUseState';
-import HookeUseReducer from '../components/HookeUseReducer';
+import HookeUseReducer from '../components/HookUseReducer';
 import HookUseEffect from '../components/HookUseEffect';
 import HookUseRef from '../components/HookUseRef';
 import HookUseCallback from '../components/HookUseCallback';
+import HookUseMemo from '../components/HookUseMemo';
+import HookUseLayoutEffect from '../components/HookUseLayoutEffect'
 
 // useContext
 import { useContext } from 'react';
@@ -32,6 +34,9 @@ const Home = () => {
       <hr />
       <HookUseCallback/>
       <hr />
+      <HookUseMemo/>
+      <hr />
+      <HookUseLayoutEffect/>
     </div>
   )
 }

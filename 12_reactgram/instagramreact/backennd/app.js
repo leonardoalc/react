@@ -19,10 +19,12 @@ app.use(cors({credentials:true, origin: "http://localhost:3000"}))
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
 
 // connection db
-const db = require("./config/db") // senha db rkCePhmLvkh0SsqS
+const db = require("./config/db") // senha db rkCePhmLvkh0SsqSrs
 
 // routes
-const router = require("./routes/Router")
+const router = require("./routes/Router.js")
+
+app.use(router)
 
 app.listen(port, () => {
     console.log('App rodando na porta: ' + port)

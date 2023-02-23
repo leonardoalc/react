@@ -10,6 +10,7 @@ import { useState, useEffect } from "react"
 // redux
 import {register, reset} from "../../slices/authSlice"
 import { useSelector, useDispatch } from "react-redux"
+import AuthMessage from "../../components/AuthMessage"
 
 
 const Register = () => {
@@ -54,10 +55,13 @@ const Register = () => {
         <input type="email" placeholder="E-mail" value={email} onChange={e => setemail(e.target.value)} autoComplete="email"/>
         <input type="password" placeholder="Senha" value={password} onChange={e => setpassword(e.target.value)} autoComplete="new-password"/>
         <input type="password" placeholder="Confirme sua senha" value={confirmPassword} onChange={e => setconfirmPassword(e.target.value)} autoComplete="new-password"/>
-
-        {!loading && <input type="submit" value="Cadastrar"/>}
-        {loading && <input type="submit" value="Aguarde" disabled/>}
-        {error && <Message msg={error} type="error"/>}
+        <AuthMessage 
+          actionName="Cadastrar" 
+          msg={error} 
+          type={error ? "error" : "success"}
+          loading={loading ? true : false}
+          error={error? true : false}
+          />
       </form>
       <p>Já possui conta? <Link to="/login">Clique aqui.</Link></p>
     </div>

@@ -34,9 +34,7 @@ const Register = () => {
       password,
       confirmPassword
     }
-    console.log("O loading é "+loading)
     dispatch(register(user))
-    console.log(loading)
   }
 
   // este use effect serve para resetar todos os estados

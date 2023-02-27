@@ -7,7 +7,6 @@ import { useState, useEffect} from "react"
 import {useSelector, useDispatch} from "react-redux"
 
 // redux
-import Messsage from "../../components/Message"
 import { profile, resetMessage, updateProfile } from "../../slices/userSlice"
 
 // components 
@@ -44,7 +43,7 @@ const EditProfile = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+    
         // gather user data from states
         const userData = {
             name
@@ -57,11 +56,11 @@ const EditProfile = () => {
             userData.bio = bio
         }
         if (password) {
-            userData.password =password
+            userData.password = password
         }
 
         const formData = new FormData() 
-
+        
         const userFormData = Object.keys(userData).forEach((key) => formData.append(key, userData[key]))
 
         formData.append("user", userFormData)
@@ -81,9 +80,6 @@ const EditProfile = () => {
 
         // update image state
         setprofileImage(image)
-    }
-    if (message) {
-        console.log(message)
     }
   return (
     <div id="edit-profile">
@@ -111,7 +107,7 @@ const EditProfile = () => {
             </label>
             <label>
                 <span>Quer alterarsua senha?</span>
-                <input type="password" placeholder="Digite sua nova senha" value={password || ""} onChange={(e) => setpassword(e.target.value)} autoComplete="current-password"/>
+                <input type="password" placeholder="Digite sua nova senha" value={password || ""} onChange={(e) => setpassword(e.target.value)} autoComplete="current-password" />
             </label>
             <AuthMessage
                 actionName="Atualizar"

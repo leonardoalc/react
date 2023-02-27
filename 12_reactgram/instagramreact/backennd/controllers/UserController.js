@@ -55,16 +55,16 @@ const login = async (req, res) => {
 
     // check if user exists
     if(!user) {
-        res.status(422).json({errors: ["Usuário não encotrado"]})
+       return res.status(422).json({errors: ["Usuário não encotrado"]})
     }
 
     // check if password matches
     if (!(await bcrypt.compare(password, user.password))) {
-        res.status(422).json({errors: ["Senha inválida."]})
+       return res.status(422).json({errors: ["Senha inválida."]})
     }
 
     // return user with token
-    res.status(201).json({
+    return res.status(201).json({
         _id: user._id,
         profileImage: user.profileImage,
         token: generateToken(user._id)

@@ -41,7 +41,7 @@ const Login = () => {
       <h2>ReactGram</h2>
       <p className="subtitle">Faça o login para ver o que há de novo.</p>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="E-mail" value={email} onChange={(e) => setemail(e.target.value)}/>
+        <input type="text" placeholder="E-mail" autoComplete="email" value={email} onChange={(e) => setemail(e.target.value)}/>
         <input type="password" autoComplete="current-password" placeholder="Senha" value={password} onChange={(e) => setpassword(e.target.value)} />
         <AuthMessage 
           actionName="Entrar" 

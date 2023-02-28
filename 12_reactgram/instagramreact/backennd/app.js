@@ -8,7 +8,7 @@ const port = process.env.PORT
 
 const app = express()
 
-// config JSON an dorm data response
+// config JSON an form data response
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 

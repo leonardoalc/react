@@ -36,6 +36,44 @@ export const getUserPhotos = createAsyncThunk(
 
         const data = await photoService.getUserPhotos(id, token)
 
+        if(data.errors)  {
+            return thunkAPI.rejectWithValue(data.errors[0])
+        }
+
+        return data
+    }
+)
+
+// delete a photo
+export const deletePhoto = createAsyncThunk(
+    "photo/delete",
+    async (id, thunkAPI) => {
+
+        const token = thunkAPI.getState().auth.user.token
+
+        const data = await photoService.deletePhoto(id, token)
+
+        if(data.errors)  {
+            return thunkAPI.rejectWithValue(data.errors[0])
+        }
+
+        return data
+    }
+)
+
+// update a photo
+export const updatePhoto = createAsyncThunk(
+    "photo/update",
+    async (photoData, thunkAPI) => {
+
+        const token = thunkAPI.getState().auth.user.token
+
+        const data = await photoService.updatePhoto({title: photoData.title}, photoData.id, token)
+
+        if(data.errors)  {
+            return thunkAPI.rejectWithValue(data.errors[0])
+        }
+
         return data
     }
 )
@@ -54,9 +92,9 @@ export const photoSlice = createSlice({
             })
             .addCase(publishPhoto.fulfilled, (state, action) => {
                 state.loading = false
-                state.error = false
+                state.error = null
                 state.success = true
-                state.user = action.payload
+                state.photo = action.payload
                 state.photos.unshift(state.photo)
                 state.message = "foto publicada com sucesso"
             })
@@ -74,6 +112,53 @@ export const photoSlice = createSlice({
                 state.error = false
                 state.success = true
                 state.photos = action.payload
+            })
+            .addCase(deletePhoto.pending, (state) => {
+                state.loading = true
+                state.error = false
+            })
+            .addCase(deletePhoto.fulfilled, (state, action) => {
+                state.loading = false
+                state.error = null
+                state.success = true
+                
+                // removendo a imagem do array de fotos
+                // a foto dentro do array que tiver o mesmo id do payload, será excluída.
+                state.photos = state.photos.filter((photo) => {
+                    return photo._id !== action.payload.id
+                })
+
+                state.message = action.payload.message                
+            })
+            .addCase(deletePhoto.rejected, (state, action) => {
+                state.loading = false
+                state.error = action.payload
+                state.photo = {}
+            })
+            .addCase(updatePhoto.pending, (state) => {
+                state.loading = true
+                state.error = false
+            })
+            .addCase(updatePhoto.fulfilled, (state, action) => {
+                state.loading = false
+                state.error = null
+                state.success = true
+                
+                // editando o title da imagem
+                // a imagem que tive o mesmo id do payload photo, terá seu título alterado.
+                state.photos.map((photo) => {
+                    if (photo.id === action.payload.photo._id) {
+                        return photo.title = action.payload.photo.title
+                    }
+                    return photo
+                })
+
+                state.message = action.payload.message                
+            })
+            .addCase(updatePhoto.rejected, (state, action) => {
+                state.loading = false
+                state.error = action.payload
+                state.photo = {}
             })
     }
 })

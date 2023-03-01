@@ -32,7 +32,7 @@ export const updateProfile = createAsyncThunk(
 
         // check for errors
         if (data.errors) {
-            return thunkAPI.rejectWithValue(data.error[0])
+            return thunkAPI.rejectWithValue(data.errors[0])
         }
 
         return data

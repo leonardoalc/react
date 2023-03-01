@@ -15,7 +15,8 @@ import { useParams } from "react-router-dom"
 
 // redux
 import { getUserDetails } from "../../slices/userSlice"
-import { publishPhoto, resetMessage } from "../../slices/photoSlice"
+import { publishPhoto, resetMessage, getUserPhotos } from "../../slices/photoSlice"
+import Message from "../../components/Message"
 
 
 const Profile = () => {
@@ -40,11 +41,10 @@ const Profile = () => {
     const newPhotoForm = useRef()
     const editPhotoForm = useRef()
 
-    // photo
-
     // Load user data
     useEffect(() => {
         dispatch(getUserDetails(id))
+        dispatch(getUserPhotos(id))
     }, [dispatch, id])
 
     const handleFile = (e) => {
@@ -55,7 +55,6 @@ const Profile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         const photoData = {
             title,
             image
@@ -73,7 +72,6 @@ const Profile = () => {
         dispatch(publishPhoto(formData))
 
         settitle("")
-
         setTimeout(() => {
             dispatch(resetMessage())
         }, 3000);
@@ -107,11 +105,36 @@ const Profile = () => {
                             <span>Imagem:</span>
                             <input type="file" onChange={handleFile}/>
                         </label>
-                        <input type="submit" value="Enviar" />
+                        {!loadingPhoto && <input type="submit" value="Enviar" />}
+                        {loadingPhoto && <input type="submit" disabled value="Aguarde..." />}
                     </form>
                 </div>
+                {errorPhoto && <Message msg={errorPhoto} type="error"/>}
             </>
         )}
+        <div className="user-photos">
+            <h2>Fotos publicadas:</h2>
+            <div className="photos-container">
+                {photos && 
+                    photos.map((photo) => (
+                        <div className="photo" key={photo._id}>
+                            {photo.image && (
+                                <img src={`${uploads}/photos/${photo.image}`} alt={photo.title} />
+                            )}
+                            {id === userAuth._id ? (
+                                <div className="actions">
+                                    <Link to={`/photos/${photo._id}`}>
+                                        <BsFillEyeFill/>
+                                    </Link>
+                                    <BsPencilFill/>
+                                    <BsXLg/>
+                                </div>
+                            ) : (<Link className="btn" to={`/photos/${photo._id}`}>Ver</Link>)}
+                        </div>
+                ))}
+                {photos.length === 0 && <p>Ainda não temos fotos publicadas.</p>}
+            </div>
+        </div>
     </div>
   )
 }

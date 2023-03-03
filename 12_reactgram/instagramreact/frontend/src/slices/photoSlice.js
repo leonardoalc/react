@@ -78,6 +78,17 @@ export const updatePhoto = createAsyncThunk(
     }
 )
 
+// get photo by id
+export const getPhoto = createAsyncThunk(
+    "photo/getphoto",
+    async (id, thunkAPI) => {
+        const token = thunkAPI.getState().auth.user.token
+
+        const data = await photoService.getPhoto(id, token)
+
+        return data
+    })
+
 export const photoSlice = createSlice({
     name: "photo",
     initialState,
@@ -88,7 +99,7 @@ export const photoSlice = createSlice({
         builder
             .addCase(publishPhoto.pending, (state) => {
                 state.loading = true
-                state.error = false
+                state.error = null
             })
             .addCase(publishPhoto.fulfilled, (state, action) => {
                 state.loading = false
@@ -105,17 +116,17 @@ export const photoSlice = createSlice({
             })
             .addCase(getUserPhotos.pending, (state) => {
                 state.loading = true
-                state.error = false
+                state.error = null
             })
             .addCase(getUserPhotos.fulfilled, (state, action) => {
                 state.loading = false
-                state.error = false
+                state.error = null
                 state.success = true
                 state.photos = action.payload
             })
             .addCase(deletePhoto.pending, (state) => {
                 state.loading = true
-                state.error = false
+                state.error = null
             })
             .addCase(deletePhoto.fulfilled, (state, action) => {
                 state.loading = false
@@ -137,7 +148,7 @@ export const photoSlice = createSlice({
             })
             .addCase(updatePhoto.pending, (state) => {
                 state.loading = true
-                state.error = false
+                state.error = null
             })
             .addCase(updatePhoto.fulfilled, (state, action) => {
                 state.loading = false
@@ -147,7 +158,7 @@ export const photoSlice = createSlice({
                 // editando o title da imagem
                 // a imagem que tive o mesmo id do payload photo, terá seu título alterado.
                 state.photos.map((photo) => {
-                    if (photo.id === action.payload.photo._id) {
+                    if (photo._id === action.payload.photo._id) {
                         return photo.title = action.payload.photo.title
                     }
                     return photo
@@ -159,6 +170,16 @@ export const photoSlice = createSlice({
                 state.loading = false
                 state.error = action.payload
                 state.photo = {}
+            })
+            .addCase(getPhoto.pending, (state) => {
+                state.loading = true
+                state.error = false
+            })
+            .addCase(getPhoto.fulfilled, (state, action) => {
+                state.loading = false
+                state.error = null
+                state.success = true
+                state.photo = action.payload
             })
     }
 })

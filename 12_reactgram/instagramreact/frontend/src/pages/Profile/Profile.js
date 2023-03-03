@@ -98,8 +98,8 @@ const Profile = () => {
 
         setTimeout(() => {
             dispatch(resetMessage())
-            window.location.reload(false);
-        }, 2000)
+
+        }, 3000)
     }
 
     const handleCancelEdit = () => {

@@ -72,7 +72,8 @@ const Photo = () => {
               <h3>Comentários: ({photo.comments.length})</h3>
               <form onSubmit={handleComment}>
                   <input type="text" placeholder="Insira seu comentário" value={commentText || ""} onChange={(e) => setcommentText(e.target.value)}/>
-                  <input type="submit" value="Enviar"/>
+                  {commentText === "" ? <input type="submit" value="Enviar" disabled/> : <input type="submit" value="Enviar"/>}
+                  {/* <input type="submit" value="Enviar"/> */}
               </form>
               {photo.comments === 0 && <p>Não há comentários...</p>}
               {photo.comments.slice(0).reverse().map((comment) => (

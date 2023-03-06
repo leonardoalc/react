@@ -210,9 +210,9 @@ const searchPhotos = async (req, res) => {
 
     const {q} = req.query
 
-    const photos = await Photo.find({title: new RegExp(q, "i")})
+    const photos = await Photo.find({title: new RegExp(q, "i")}).exec()
 
-    res.status(200).json({photos})
+    res.status(200).json(photos)
 
 }
 
